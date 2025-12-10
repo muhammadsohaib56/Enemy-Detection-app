@@ -1,0 +1,22 @@
+# Python & virtual environments
+venv/
+.venv/
+env/
+__pycache__/
+*.py-cache__/
+*.pyc
+
+# App temporary folders
+uploads/
+outputs/
+
+# IDE / VS Code
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
