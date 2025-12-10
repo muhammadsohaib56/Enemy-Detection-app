@@ -1,9 +1,7 @@
+streamlit
 ultralytics==8.2.103
+opencv-python-headless
 torch
 torchvision
-torchaudio
-transformers
-pillow
-opencv-python-headless==4.11.0.86
-streamlit
 numpy
+pillow
