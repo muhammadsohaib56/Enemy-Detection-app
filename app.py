@@ -4,13 +4,14 @@ from detector import detect_enemies
 
 st.set_page_config(page_title="Enemy Detection App", layout="centered")
 
-st.title("🎮 Enemy Detection")
+st.title("🎮 Enemy / Bot Detection")
+
 st.write(
-    "Rules:\n"
-    "- FF00FF pink horizontal bar above head: Enemy (red box)\n"
-    "- Blue horizontal bar above head: Teammate (black box)\n"
-    "- No bar: Bot (treated as enemy, red box)\n"
-    "Shadows are ignored."
+    "Detection rules (as per client):\n"
+    "- Blue horizontal bar above head: Teammate (ignored, no box).\n"
+    "- FF00FF pink horizontal bar above head: Enemy (red box).\n"
+    "- No bar: Bot or mannequin. Bots are treated as enemies (red box); mannequins are filtered using a pretrained image classifier.\n"
+    "- Teammates and mannequins must not be detected."
 )
 
 uploaded_file = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
@@ -26,11 +27,10 @@ if uploaded_file:
 
     st.image(input_path, caption="Uploaded Image", use_container_width=True)
 
-    if st.button("Detect Enemies"):
-        # Show spinner while processing
-        with st.spinner("Detecting enemies, teammates, and bots..."):
+    if st.button("Detect Enemies / Bots"):
+        with st.spinner("Detecting enemies and bots (teammates and mannequins ignored)..."):
             output_img, output_path = detect_enemies(input_path)
 
         st.success("Detection Complete!")
-        st.image(output_path, caption="Enemy Detection Output", use_container_width=True)
+        st.image(output_path, caption="Detection Output", use_container_width=True)
         st.write(f"Saved output: {output_path}")
